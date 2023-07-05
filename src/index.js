@@ -4,23 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
 
-import  {Provider} from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import counterslice from './Store/counterslice.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const store = configureStore({
-    reducer : {
-        counter : counterslice
-    }
-})    
 
 root.render(
     <BrowserRouter>
-            <Provider store = {store}>
+        <ChakraProvider>
                     <App />
-            </Provider> 
+        </ChakraProvider>
     </BrowserRouter>
 );
 

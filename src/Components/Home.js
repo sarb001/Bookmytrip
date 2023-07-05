@@ -6,8 +6,6 @@ import Cards from './Cards'
 const Home = () => {
   return (
     <>
-       <Header />
-       <TabsSelection />
        <Cards />
      </>
   )
