@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Heading, Stack, Text, StackDivider, Box, ModalHeader } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CalendarNavbar from './CalendarNavbar';
@@ -7,6 +7,7 @@ import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react';
 
 import { AiFillPlusCircle , AiFillMinusCircle } from 'react-icons/ai';
 import { GrLocation } from 'react-icons/gr';
+import './TabsOptional.css';
 
   const placesArray = [
     {
@@ -89,7 +90,7 @@ const TabsOptional = () => {
              <div className = "search-bar">
                <input type = "text"   value = {inputvalue}
                placeholder = 'Enter Destination Value' 
-               onChange = {setinputhandler} />
+               onChange = {setinputhandler}  />
              </div>
           </ModalHeader>
         <Tabs>
@@ -101,41 +102,40 @@ const TabsOptional = () => {
 
                 <TabPanels>
                         <TabPanel>
-                              <div className="tab-content-places" style   = {{display:'grid',gridTemplateRows :'1fr 1fr ',margin:'5%'}}>
-
+                              <div className="absolute z-50 tabContentPlaces" >
 
                                        {inputvalue === "" ? (
                                          <>
-                                              <div className='tabContent1Hold cursor-pointer' style  = {{display:'grid'  , gridTemplateColumns:'1fr 1fr 1fr' }}>
-                                                    <Link  to={`/location/usa`} style = {{padding:'5%'}}>
+                                              <div className = 'tabContent1Hold cursor-pointer' >
+                                                    <Link  to={`/location/usa`} >
                                                       <img src='https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg' className='tabContent1Image' />
-                                                      <p className='fs'> I'm flexible  </p>
+                                                      <span > I'm flexible  </span>
                                                     </Link>
 
-                                                  <Link to={`/location/europe`}  style = {{padding:'5%'}}>
+                                                  <Link to={`/location/europe`}>
                                                     <img src='https://a0.muscache.com/im/pictures/7b5cf816-6c16-49f8-99e5-cbc4adfd97e2.jpg?im_w=320' className='tabContent1Image' />
-                                                    <p className='fs'> Europe </p>
+                                                    <span> Europe </span>
                                                   </Link>
 
-                                                    <Link to={`/location/london`}  style = {{padding:'5%'}}>
+                                                    <Link to={`/location/london`} >
                                                       <img src='https://a0.muscache.com/im/pictures/dbb2b5ef-2efe-4099-81ac-c7b957f384ed.jpg?im_w=320' className='tabContent1Image' />
-                                                      <p className='fs'> United Kingdom </p>
+                                                      <span > United Kingdom </span>
                                                     </Link>
                                               </div>
 
-                                              <div className='secImages' style  = {{display:'grid'  , gridTemplateColumns:'1fr 1fr 1fr' }}>
-                                        <Link to={`/location/canada`}  style = {{padding:'5%'}}>
-                                          <img src='https://a0.muscache.com/im/pictures/d77de9f5-5318-4571-88c7-e97d2355d20a.jpg?im_w=320' className='tabContent1Image' />
-                                          <p className='fs'> SouthEast Asia </p>
-                                        </Link>
-                                        <Link to={`/location/italy`}  style = {{padding:'5%'}}>
-                                          <img src='https://a0.muscache.com/im/pictures/ebc5a343-8b76-4ae5-8700-eb5e9cec9243.jpg?im_w=320' className='tabContent1Image mr-1' />
-                                          <p className='fs'> Indonesia </p>
-                                        </Link>
-                                        <Link to={`/location/kyiv`}  style = {{padding:'5%'}}>
-                                          <img src='https://a0.muscache.com/im/pictures/66355b01-4695-4db9-b292-c149c46fb1ca.jpg?im_w=320' className='tabContent1Image' />
-                                          <p className='fs'> MiddleEast </p>
-                                        </Link>
+                                              <div className='secImages' >
+                                                  <Link to={`/location/canada`} >
+                                                    <img src='https://a0.muscache.com/im/pictures/d77de9f5-5318-4571-88c7-e97d2355d20a.jpg?im_w=320' className='tabContent1Image' />
+                                                    <span className='fs'> SouthEast Asia </span>
+                                                  </Link>
+                                                  <Link to={`/location/italy`} >
+                                                    <img src='https://a0.muscache.com/im/pictures/ebc5a343-8b76-4ae5-8700-eb5e9cec9243.jpg?im_w=320' className='tabContent1Image mr-1' />
+                                                    <span className='fs'> Indonesia </span>
+                                                  </Link>
+                                                  <Link to={`/location/kyiv`} >
+                                                    <img src='https://a0.muscache.com/im/pictures/66355b01-4695-4db9-b292-c149c46fb1ca.jpg?im_w=320' className='tabContent1Image' />
+                                                    <span className='fs'> MiddleEast </span>
+                                                  </Link>
                                               </div>
 
                                         </>
@@ -150,19 +150,18 @@ const TabsOptional = () => {
                                           }).map((item) => {
                                               return (
                                                 <>
-                                                  <div className = "main-item" style = {{backgroundColor:'rosybrown',width:'30%',
-                                                  margin:'2%',color:'black',fontSize:'18px',cursor:'pointer'}}>   
-                                                  <Link to = {`/location/${clickedlinkvalue}`} style = {{display:'grid',gridTemplateColumns:'1fr 1fr',
-                                                  margin:'9%' ,textAlign:'center' ,justifyItems:'center'}}>
-                                                      <div className="location-icon" style = {{alignSelf:'center'}}>
-                                                        <GrLocation   />
-                                                      </div>
-                                                      <div className="place-main">
-                                                        <p onMouseOver = {(e) => setclickedlinkvalue(e.target.innerText)}>
-                                                          {item.place} 
-                                                        </p>
-                                                      </div>
-                                                  </Link>
+                                                  <div className = "searchdisplayIndivitual" >   
+                                                    <div>
+                                                
+                                                      <Link to = {`/location/${clickedlinkvalue}`}>
+                                                            <GrLocation   className  = 'inline-block mb-2 text-2xl'  />
+                                                            <p onMouseOver = {(e) => setclickedlinkvalue(e.target.innerText)}
+                                                            className='capitalize fof inline-block' >
+                                                              {item.place} 
+                                                            </p>
+                                                      </Link>
+                                                      
+                                                    </div>
                                                   </div>
                                                 </>
                                               )
