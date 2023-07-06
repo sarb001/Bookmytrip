@@ -26,15 +26,14 @@ const TabsSelection = () => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay  />
-        <ModalContent>
-               <TabsOptional />
-          <ModalCloseButton />
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
+            <ModalContent>
+                        <ModalBody>
+                            <TabsOptional />
+                        </ModalBody>
+              <ModalCloseButton />
+                <ModalFooter>
+                </ModalFooter>
+            </ModalContent>
       </Modal>
       </div>
     </>
