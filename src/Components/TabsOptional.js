@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Heading, Stack, Text, StackDivider, Box, ModalHeader, ModalBody, Select } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CalendarNavbar from './CalendarNavbar';
-
 import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react';
-
 import { AiFillPlusCircle , AiFillMinusCircle } from 'react-icons/ai';
 import { GrLocation } from 'react-icons/gr';
 import './TabsOptional.css';
+import { placesStore } from '../Store/MainStore';
 
   const placesArray = [
     {
@@ -86,11 +85,6 @@ const TabsOptional = () => {
 
     const [selectedOption,setselectedOption] = useState(null);
 
-    const myfun = () => {
-      var x = document.getElementById('myselect').value;
-      console.log('value is --',x);
-    }
-
 
    const setinputhandler = (e) => {
           setinputvalue(e.target.value);
@@ -132,7 +126,7 @@ const TabsOptional = () => {
     }
    }
 
-  
+      
 
   return (
     <>
@@ -149,7 +143,6 @@ const TabsOptional = () => {
                 <TabList>
                     <Tab> Places  </Tab>
                     <Tab> Dates  </Tab>
-                    <Tab>  Guests </Tab>
                 </TabList>
 
                     <TabPanels>
@@ -230,87 +223,6 @@ const TabsOptional = () => {
                             </TabPanel>
 
 
-                            <TabPanel>  
-                                  <Card>
-                              <CardBody>
-                                <Stack  divider = {<StackDivider  />} spacing='4'>
-                                  <Box style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
-                                    <Heading size='xs' textTransform='uppercase'>
-                                          <div>   Adults </div> 
-                                          <span> Ages 13 or above  </span>
-                                    </Heading>
-                                    <Text  pt='2' fontSize='sm'>
-                                            <div className="icons" style = {{display:'grid',gridTemplateColumns:'1fr 1fr 1fr' , 
-                                            justifyContent:'space-between', alignItems:'center' , justifyItems:'center'}}>
-                                                <span style = {{cursor:'pointer'}}>  
-                                                  <AiFillPlusCircle  onClick = {increasehandler} /> 
-                                                </span>
-                                                <span>  {adultsquantity}  </span>
-                                                <span style = {{cursor:'pointer'}}>  
-                                                <AiFillMinusCircle onClick = {decreasehandler} />  
-                                                </span>
-                                            </div>
-                                    </Text>
-                                  </Box>
-
-                                  <Box style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
-                                    <Heading size='xs' textTransform='uppercase'>
-                                            <div>  Children  </div>
-                                            <span> Ages 2-12 </span>
-                                    </Heading>
-                                    <Text pt='2' fontSize='sm'>
-                                        <div className="icons" style = {{display:'grid',gridTemplateColumns:'1fr 1fr 1fr' , 
-                                              justifyContent:'space-between', alignItems:'center' ,justifyItems:'center'}}>
-                                                  <span style = {{cursor:'pointer'}}>  
-                                                  <AiFillPlusCircle   onClick = {increasechildhandler}  /> 
-                                                  </span>
-                                                  <span>  {children} </span>
-                                                  <span style = {{cursor:'pointer'}}>  
-                                                    <AiFillMinusCircle  onClick = {decreasechildhandler}  /> 
-                                                  </span>
-                                        </div>
-                                    </Text>
-                                  </Box>
-
-                                  <Box style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
-                                    <Heading size='xs' textTransform='uppercase'>
-                                          <div>  Infants </div>
-                                          <span> Under 2  </span>
-                                    </Heading>
-                                    <Text pt='2' fontSize='sm'>
-                                            <div className = "icons" style = {{display:'grid',gridTemplateColumns:'1fr 1fr 1fr', 
-                                              justifyContent:'space-between', alignItems:'center' , justifyItems:'center'}}>
-                                                  <span style = {{cursor:'pointer'}}> 
-                                                    <AiFillPlusCircle   onClick = {increaseinfantshandler} />  
-                                                  </span>
-                                                  <span>  {infants}  </span>
-                                                  <span style = {{cursor:'pointer'}}>  
-                                                  <AiFillMinusCircle   onClick = {decreaseinfantshandler}  />
-                                                  </span>
-                                            </div>
-                                      </Text>
-                                    </Box>
-                                  <Box>
-                                    <Heading size='xs' textTransform='uppercase'>
-                                            <div> Pets </div>
-                                            <span>  ( Select One )   </span>
-                                    </Heading>
-                                    <Text pt='2' fontSize='sm'>
-                                      <div className = "icons"
-                                      style = {{display:'grid',gridTemplateColumns:'1fr 1fr' , 
-                                              justifyContent:'space-between', alignItems:'center' , justifyItems:'center'}}>
-                                                <select id = "myselect" onChange = {myfun}>
-                                                    <option value = "yes"> Yes </option>
-                                                    <option value = "no">  No </option>
-                                                </select>
-                                            </div>
-                                    </Text>
-                                  </Box>
-
-                                </Stack>
-                              </CardBody>
-                                  </Card>
-                            </TabPanel>
                     </TabPanels>
             </Tabs>
 
