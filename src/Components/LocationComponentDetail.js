@@ -8,18 +8,18 @@ const LocationComponentDetail = () => {
     const params = useParams();
     const {loc} = params;
     
-   const [petReview,setpetReview] = useState(false);
-   const [openPets,setopenPets]   = useState(false);
+    const [petReview,setpetReview] = useState(false);
+    const [openPets,setopenPets]   = useState(false);
+
     const [openFilter,setopenFilter] = useState(false);
 
-    const [coupleToggle,setcoupleToggle] = useState(false);
-
+     const [coupleToggle,setcoupleToggle] = useState(false);
      const [couple,setcouple] = useState(false);
 
         const placesDetailsArray = placesStore.filter((item) => 
             item.location.toLocaleLowerCase().includes(loc.toLocaleLowerCase())
         );
-            console.log('placesdetails 1 --', placesDetailsArray);
+            // console.log('placesdetails 1 --', placesDetailsArray);
             
     const [originalarray ,setoriginalarray] = useState(placesDetailsArray);
 
@@ -42,7 +42,7 @@ const LocationComponentDetail = () => {
        setoriginalarray(placesDetailsArray);
      }
 
-      const openPetsHandler = () => {       // toggling pets dropdown 
+      const openPetsHandler = () => {          // toggling pets dropdown 
           setopenPets(!openPets);
           setopenFilter(false);
       }
@@ -51,6 +51,11 @@ const LocationComponentDetail = () => {
         setcoupleToggle(!coupleToggle);
         setopenFilter(false);
       }
+
+      const nocoupleFilter = () => {
+        setoriginalarray(placesDetailsArray)
+        setcouple(false);
+     }
 
       const coupleFilter = () => {
             let mutate = placesDetailsArray.filter((item) => {
@@ -62,14 +67,7 @@ const LocationComponentDetail = () => {
       }
 
 
-      const nocoupleFilter = () => {
-         setoriginalarray(placesDetailsArray)
-         setcouple(false);
-      }
-
-
-    //   console.log('original array is -',originalarray);
-
+     
   return (
     <div>
                 <h1>  Total  Stays in {loc} Here  </h1>

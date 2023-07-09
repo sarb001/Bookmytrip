@@ -1,0 +1,14 @@
+.tab1hold{
+    margin: 3%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.card-bosh{
+    margin: 4%;
+    border-radius: 45px solid green;
+    background-color: rgb(203, 162, 162);
+}
+.services-division{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

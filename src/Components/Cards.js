@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { placesStore } from '../Store/MainStore'
 import { Link } from 'react-router-dom'
+import TabsComponent from './TabsComponent'
 
 const Cards = () => {
 
   return (
         <>
-          <h2> Cards Dropdown here B-  </h2>
+        
+          <TabsComponent  />
 
           <div className = "cards-container" style = {{margin:'3%',display:'grid',
           gridTemplateColumns:'1fr 1fr 1fr'}}>
