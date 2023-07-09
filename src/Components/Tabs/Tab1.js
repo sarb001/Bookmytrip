@@ -7,7 +7,7 @@ import { BiBed } from 'react-icons/bi';
 import { FaBath } from 'react-icons/fa';
 import { BsFillBuildingsFill} from 'react-icons/bs';
 
-const Tab1 = () => {
+const Tab1 = ({pushdown}) => {
   return (
     <>  
             <div className = 'tab1hold'>

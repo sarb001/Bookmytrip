@@ -12,3 +12,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+.placeTabs-hold{
+    display: flex !important;
+    top:28rem;
+}

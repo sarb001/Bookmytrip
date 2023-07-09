@@ -8,31 +8,35 @@ import Tab5 from './Tabs/Tab5';
 import Tab6 from './Tabs/Tab6';
 import Tab7 from './Tabs/Tab7';
 import Tab8 from './Tabs/Tab8';
+import './Tabs/Tab.css';
 
-const TabsComponent = () => {
+
+const TabsComponent = ({  toggle ,setToggle }) => {
   return (
     <>
         <Tabs position="relative" variant="unstyled">
-            <TabList>
-            <Tab>One</Tab>    <Tab>Two</Tab>  <Tab>Three</Tab>
-            <Tab>Four </Tab>  <Tab>Five</Tab> <Tab>Six</Tab>
-            <Tab>Seven</Tab>  <Tab>Eight</Tab>
+            <TabList className = 'placeTabs-hold'>
+
+                <Tab>One</Tab>    <Tab>Two</Tab>  <Tab>Three</Tab>
+                <Tab>Four </Tab>  <Tab>Five</Tab> <Tab>Six</Tab>
+                <Tab>Seven</Tab>  <Tab>Eight</Tab>
+
             </TabList>
             <TabIndicator
             mt="-1.5px"
             height="2px"
             bg="blue.500"
-            borderRadius="1px"
-            />
+            borderRadius="1px"  />
+
             <TabPanels>
-            <TabPanel> <Tab1 />  </TabPanel>
-            <TabPanel> <Tab2 />  </TabPanel>
-            <TabPanel>  <Tab3 />    </TabPanel>
-            <TabPanel> <Tab4 /> </TabPanel>
-            <TabPanel> <Tab5  /> </TabPanel>
-            <TabPanel> <Tab6  /> </TabPanel>
-            <TabPanel> <Tab7 /> </TabPanel>
-            <TabPanel> <Tab8  /> </TabPanel>
+                    <TabPanel> <Tab1    pushdown = {toggle} />  </TabPanel>
+                    <TabPanel> <Tab2  pushdown= {toggle} />  </TabPanel>
+                    <TabPanel>  <Tab3  pushdown= {toggle} />    </TabPanel>
+                    <TabPanel> <Tab4  pushdown= {toggle}/> </TabPanel>
+                    <TabPanel> <Tab5   pushdown= {toggle}/> </TabPanel>
+                    <TabPanel> <Tab6  pushdown= {toggle}/> </TabPanel>
+                    <TabPanel> <Tab7  pushdown= {toggle} /> </TabPanel>
+                    <TabPanel> <Tab8   pushdown= {toggle} /> </TabPanel>
             </TabPanels>
         </Tabs>
     </>
