@@ -7,8 +7,8 @@ const Cards = () => {
 
   return (
         <>
-        
-          <TabsComponent  />
+{/*         
+          <TabsComponent  /> */}
 
           <div className = "cards-container" style = {{margin:'3%',display:'grid',
           gridTemplateColumns:'1fr 1fr 1fr'}}>
@@ -23,7 +23,7 @@ const Cards = () => {
                               <img src = {item.homeMainPic} style = {{width:'100%',height:'100%'}} />
                             </div>
                             <div className="main-price">
-                                <h1> Pets - {item.pets} </h1> 
+                                {/* <h1> Pets - {item.pets} </h1>  */}
                                 <h2> Location - {item.location} </h2>
                                 <h1> Petssss - 
                                   {

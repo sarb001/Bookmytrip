@@ -21,7 +21,7 @@ const App = () => {
          <Route path='/' element = {
          <>
          <Home  />
-            <TabsComponent  toggle = {open}  setToggle = {setopen} />
+            {/* <TabsComponent  toggle = {open}  setToggle = {setopen} /> */}
          </>
          }>  </Route>
          <Route path='/card/:id' element = {<CardsDetail  />}>  </Route>
