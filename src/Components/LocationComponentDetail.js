@@ -1,44 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { placesStore } from '../Store/MainStore';
-// import './LocationComponentDetails.css';
+import './LocationComponentDetails.css';
 
 const LocationComponentDetail = () => {
 
     const params = useParams();
     const {loc} = params;
-    const [originalarray ,setoriginalarray] = useState([]);
     
    const [petReview,setpetReview] = useState(false);
    const [openPets,setopenPets]   = useState(false);
     const [openFilter,setopenFilter] = useState(false);
 
-    
-    useEffect(() => {
-        const filterPlaces = () => {
-        const placesDetailsArray = placesStore.filter((item) =>
+    const [coupleToggle,setcoupleToggle] = useState(false);
+
+     const [couple,setcouple] = useState(false);
+
+        const placesDetailsArray = placesStore.filter((item) => 
             item.location.toLocaleLowerCase().includes(loc.toLocaleLowerCase())
         );
-            console.log('placesdetails --', placesDetailsArray);
-            setoriginalarray(placesDetailsArray);
-        };
-        filterPlaces();
+            console.log('placesdetails 1 --', placesDetailsArray);
+            
+    const [originalarray ,setoriginalarray] = useState(placesDetailsArray);
 
-    }, [loc])
-   
-    // when data is updated in placesdetialsarray  only then run effect means update data with final state  
+    useEffect(() =>{
+        setoriginalarray(placesDetailsArray);
+    },[loc])
+     
 
     const petsFilter = () => {
-        let newstate = originalarray.filter((item) => {
+        let newstate = placesDetailsArray.filter((item) => {
            return item.pets === true;
         })
         setpetReview(true);
         setoriginalarray(newstate);
+        setcouple(false);
    }
 
      const nopetsFilter = () => {
        setpetReview(false);
-       setoriginalarray((prevarray) => prevarray);
+       setoriginalarray(placesDetailsArray);
      }
 
       const openPetsHandler = () => {       // toggling pets dropdown 
@@ -46,26 +47,61 @@ const LocationComponentDetail = () => {
           setopenFilter(false);
       }
 
-      console.log('original array is -',originalarray);
+      const openCoupleHandler = () => {         // toggle thee Couple Handler 
+        setcoupleToggle(!coupleToggle);
+        setopenFilter(false);
+      }
+
+      const coupleFilter = () => {
+            let mutate = placesDetailsArray.filter((item) => {
+                 return item.couple === true
+            })
+            setoriginalarray(mutate);
+            setpetReview(false);
+            setcouple(true);
+      }
+
+
+      const nocoupleFilter = () => {
+         setoriginalarray(placesDetailsArray)
+         setcouple(false);
+      }
+
+
+    //   console.log('original array is -',originalarray);
 
   return (
     <div>
                 <h1>  Total  Stays in {loc} Here  </h1>
 
-                <div className='petHold mt-3 zoom' onClick={openPetsHandler}>
-                    {/* <MdOutlinePets className=' inline-block text-2xl pr-2' /> */}
-                    <p className=' inline-block'> Pet Friendly </p>
-                </div>
+                        <div className="filter-boxes-partition" style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
+                                <div className='petHold mt-3 zoom' onClick={openPetsHandler}>
+                                    <p className=' inline-block'> Pet Friendly </p>
+                                </div>
 
+                                <div className='flex petHold mt-3 zoom' onClick={openCoupleHandler}>
+                                            <p className=' inline-block pl-5'> Couple Friendly </p>
+                            </div>
+                        </div>
                
-                {openPets && <div className = "selectDropDown">
-                                    <div  onClick = {petsFilter}   className = 'pt-4 mb-8 cursor-pointer h-2' > 
+                            {openPets && <div className = "selectDropDown">
+                                                <div  onClick = {petsFilter}   className = 'pt-4 mb-8 cursor-pointer h-2'  style = {{backgroundColor:'goldenrod'}} > 
+                                                Yes </div>
+                                                <div  onClick = {nopetsFilter} className = 'cursor-pointer h-2' style = {{backgroundColor:'royalblue'}}> 
+                                                No </div>
+                                    </div> 
+                            }
+
+                       
+
+                       <div className='zindex'>
+                                {coupleToggle && <div className='selectDropDownCouple cursor-pointer'>
+                                    <div onClick={coupleFilter} className=" pt-4 mb-8 cursor-pointer h-2" style = {{backgroundColor:'royalblue'}}>  
                                     Yes </div>
-                                    <div  onClick = {nopetsFilter} className = 'cursor-pointer h-2' > 
-                                     No </div>
-                            
-                        </div> 
-                }
+                                    <div onClick={nocoupleFilter} className="cursor-pointer h-2" style = {{backgroundColor:'goldenrod'}}> No </div>
+                                </div>
+                                }
+                            </div>
           
                     {originalarray.length > 0 ? (
                     <>
@@ -82,6 +118,7 @@ const LocationComponentDetail = () => {
                                             </div>
                                             <div className="main-price">
                                                         <h2> {petReview &&  <p> Pets are Welcome </p>} </h2>
+                                                        <h2> {couple &&  <p>  Couple Friendly  </p>} </h2>
                                                                 <h2> Location - {item.location} </h2>
                                                             <span> ${item.price}/month </span>
                                             </div> 
